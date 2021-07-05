@@ -1,4 +1,41 @@
 body {
-    background-image: url("static/css/images/backgorund-notes.jpg");
+    background-color: #e1bee7;
 }
 
+h1 {
+    font-size: 70px;
+    margin: 0px;
+    margin-bottom: 10px;
+}
+
+h2{
+    font-size: 26px;
+    margin: 0px;
+    margin-bottom: 20px;
+}
+
+.title{
+    text-align: center;
+}
+
+.tag{
+    text-align: center;
+}
+
+.hero img {
+    height: 350px;
+    width:100%;
+}
+
+.genre{
+    display: inline;
+}
+
+.row .col{
+    margin: 0px 3px;
+}
+
+.buttons{
+    position: relative;
+    margin-top: 2%;
+}
