@@ -19,7 +19,7 @@
             <div class="nav-wrapper purple lighten-2">
                 <a href="{{ url_for('base') }}" class="brand-logo">Inspirasong</a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down purple lighten-2">
-                    <li><a href="#">Login</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
                     <li><a href="{{ url_for('register') }}">Register</a></li>
                     <li><a href="#">Profile</a></li>
                     <li><a href="#">Create Post</a></li>
@@ -44,19 +44,24 @@
         <!--genre page buttons-->
         <section class="row buttons">
             <div class="genre">
-                <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-2">Rock <i class="fas fa-skull"></i></a>
+                <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-1" 
+                    href="{{ url_for('rock') }}">Rock <i class="fas fa-skull"></i></a>
             </div>
             <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1">Pop <i class="fas fa-star"></i></a>
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="{{ url_for('pop') }}">Pop <i class="fas fa-star"></i></a>
             </div>
             <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1">Rap <i class="fas fa-fist-raised"></i></a>
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="{{ url_for('rap') }}">Rap <i class="fas fa-fist-raised"></i></a>
             </div>
             <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1">Dance <i class="fas fa-compact-disc"></i></a>
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="{{ url_for('dance') }}">Dance <i class="fas fa-compact-disc"></i></a>
             </div>
             <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1">Other <i class="fas fa-globe-europe"></i></a>
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
             </div>
         </section>
 
