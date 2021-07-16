@@ -98,10 +98,33 @@ def logout():
     return redirect(url_for("base"))
 
 
+@app.route("/create_post", methods=["GET", "POST"])
+def create_post():
+    if request.method == "POST":
+
+        post = {
+            "song_name": request.form.get("song_name"),
+            "artist_name": request.form.get("artist_name"),
+            "albulm_name": request.form.get("albulm_name"),
+            "genre": request.form.get("genre"),
+            "sub_genre": request.form.get("sub_genre"),
+            "post_description": request.form.get("post_description"),
+            "post_date": request.form.get("post_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.posts.insert_one(post)
+        flash("Post Successfully Created")
+        return redirect(url_for("base.html"))
+
+    genres = list(mongo.db.genre.find().sort("genre_name", 1))
+    return render_template("create_post.html", genres=genres)
+
+
 @app.route("/rock", methods=["GET", "POST"])
 def rock():
     posts = list(mongo.db.tasks.find())
     return render_template("rock.html", posts=posts)
+
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
