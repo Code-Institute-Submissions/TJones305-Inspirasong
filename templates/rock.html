@@ -1,0 +1,49 @@
+{% extends "base.html" %}
+{% block content %}
+
+        <section>
+            <h1 class="purple lighten-4 title">Inspirasong</h1>
+            <h2 class="purple lighten-4 tag">Rock</h2>
+        </section>  
+
+        <div class="hero">
+            <img src="#" alt="Rock image">
+        </div>
+
+        <section>
+        <!--flash messages-->
+        {% with posts = get_flashed_posts() %}
+            {% if posts.genre|lower == "rock"|lower %}
+                {% for post in posts %}
+                    <div class="row flashes">
+                        <h4 class="light-purple lighten-4 center-align">{{ post }}</h4>
+                    </div>
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
+    </section>
+
+        <!--genre page buttons-->
+        <section class="row buttons">
+            <div class="genre">
+                <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-1" 
+                    href="#">Rock <i class="fas fa-skull"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="#">Pop <i class="fas fa-star"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="#">Rap <i class="fas fa-fist-raised"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="#">Dance <i class="fas fa-compact-disc"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col m2 waves-effect waves-light btn-large purple lighten-1" 
+                    href="#">Other <i class="fas fa-globe-europe"></i></a>
+            </div>
+        </section>
+{% endblock %}
