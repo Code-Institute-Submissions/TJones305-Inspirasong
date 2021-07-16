@@ -90,6 +90,19 @@ def profile():
     return redirect(url_for("login"))
 
 
+@app.route("/logout")
+def logout():
+    # REMOVE USER FROM SESSION COOKIES
+    flash("You have been logged out")
+    session.pop("user")
+    return redirect(url_for("base"))
+
+
+@app.route("/rock", methods=["GET", "POST"])
+def rock():
+    posts = list(mongo.db.tasks.find())
+    return render_template("rock.html", posts=posts)
+
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
