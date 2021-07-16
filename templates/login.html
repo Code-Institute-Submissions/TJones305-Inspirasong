@@ -1,0 +1,48 @@
+{% extends "base.html" %}
+{% block content %}
+
+    <h3 class="center-align">Login</h3>
+
+    <div class="row">
+        <form class="col s12 m8 offset-m2" method="POST" action="{{ url_for('login') }}">
+            <div class="card-panel">
+
+                <!--Username-->
+                <div class="row">
+                    <div class="input-field col s6">
+                        <i class="fas fa-user-cog prefix purple-text lighten-1"></i>
+                        <input id="username" name="username" type="text" minlength="5"
+                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="username">Username</label>
+                    </div>
+                </div>
+
+                <!--Password-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-user-lock prefix purple-text lighten-1"></i>
+                        <input id="password" name="password" type="password" minlength="5" 
+                            maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
+                        <label for="password">Password</label>
+                    </div>
+                </div>
+                <!--Login Button-->
+                <div class="row">
+                    <button type="submit" class="col s12 waves-light btn-large purple lighten-1">
+                        Login <i class="fas fa-sign-in-alt"></i>
+                    </button>
+                </div>
+            </div>
+        </form>
+    </div>
+
+    <div class="row">
+        <div class="col s12">
+            <p class="centeralign">
+                First time Visitor? Register Here
+                <a href="{{ url_for('register') }}" class="light-purple-text text-darken-4">Register</a>
+            </p>
+        </div>
+    </div>
+
+{% endblock %}
