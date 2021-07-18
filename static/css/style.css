@@ -1,21 +1,41 @@
 body {
-    background-color: #e1bee7;
+    background-color: #f6c4ff;
 }
 
 h1 {
-    font-size: 70px;
+    font-size: 85px;
+    font-family: 'Play', sans-serif;
     margin: 0px;
     margin-bottom: 10px;
 }
 
 h2{
     font-size: 26px;
+    font-family: 'Play', sans-serif;
     margin: 0px;
     margin-bottom: 20px;
 }
 
+h3{
+    font-family: 'Play', sans-serif;
+}
+
 .title{
     text-align: center;
+    font-family: 'Zen Tokyo Zoo', cursive;
+}
+
+.rainbow {
+background-image: -webkit-gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #22f),color-stop(0.75, #f2f), color-stop(0.9, #f2f), color-stop(1, #f22) );
+
+background-image: gradient( linear, left top, right top, color-stop(0, #f22), color-stop(0.15, #f2f), color-stop(0.3, #22f), color-stop(0.45, #2ff), color-stop(0.6, #22f),color-stop(0.75, #f2f), color-stop(0.9, #f2f), color-stop(1, #f22) );
+
+color:transparent;
+
+-webkit-background-clip: text;
+
+background-clip: text;
+
 }
 
 .tag{
@@ -38,4 +58,28 @@ h2{
 .buttons{
     position: relative;
     margin-top: 2%;
+}
+
+.rock {
+    font-family: 'Metal Mania', cursive;
+    font-size: 18px;
+}
+
+.pop {
+    font-family: 'Bangers', cursive;
+    font-size: 20px;
+}
+
+.dance {
+    font-family: 'Zen Dots', cursive;
+}
+
+.rap {
+    font-family: 'Staatliches', cursive;
+    font-size: 20px;
+}
+
+.other {
+    font-family: 'Bebas Neue', cursive;
+    font-size: 20px;
 }
