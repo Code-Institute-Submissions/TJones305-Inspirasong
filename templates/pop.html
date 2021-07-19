@@ -3,7 +3,7 @@
 
         <section>
             <h1 class="purple lighten-4 title rainbow">INSPIRASONG</h1>
-            <h2 class="purple lighten-4 tag pop">Pop</h2>
+            <h2 id ="pop_header" class="purple lighten-4 tag">Pop</h2>
         </section>  
 
         <div class="hero">
@@ -12,11 +12,43 @@
 
         <section>
         <!--flash messages-->
+        {% with messages = get_flashed_messages(category_filter=["pop"]) %}
+            {% if category|lower == 'pop'|lower %}
+                {% for messages in messages %}
                     <div class="row flashes">
                         <h4 class="light-purple lighten-4 center-align">{{ post }}</h4>
                     </div>
-
+                {% endfor %}
+            {% endif %}
+        {% endwith %}
         </section>
+
+         <ul class="collapsible">
+            {% for post in posts %}
+            <li>
+                <div class="header white-text purple darken-4 text-shadow">
+                    <div class="col s3">
+                        <i class="fas fa-caret-down"></i>
+                        {% if session.user|lower == post.created_by|lower %}
+                            <a href="{{ url_for('delete_task', task_id=task._id) }}" class="waves-effect waves-light btn-small green accent-4">Delete</a>
+                            <a href="{{ url_for('edit_task', task_id=task._id) }}" class="waves-effect waves-light btn-small light-blue accent-4">Edit</a>
+                        {% endif %}
+                    </div>
+                </div>
+
+                <div class="body">
+                    <strong>{{post.song_name }}</strong>
+                    <p>{{post.artist_name }}</p>
+                    <p>{{post.albulm_name }}</p>
+                    <p>{{post.genre }}</p>
+                    <p>{{post.sub_genre }}</p>                    
+                    <p>{{post.post_description}}</p>
+                    <p><em>{{post.post_date }}</em></p>
+                    <p><em>by: {{ post.created_by }}</em></p>
+                </div>
+            </li>
+            {% endfor %}
+        </ul>
 
         <!--genre page buttons-->
         <section class="row buttons">
