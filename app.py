@@ -122,8 +122,28 @@ def create_post():
 
 @app.route("/rock", methods=["GET", "POST"])
 def rock():
-    posts = list(mongo.db.tasks.find())
+    posts = list(mongo.db.posts.find())
     return render_template("rock.html", posts=posts)
+
+
+@app.route("/pop", methods=["GET", "POST"])
+def pop():
+    return render_template("pop.html")
+
+
+@app.route("/rap", methods=["GET", "POST"])
+def rap():
+    return render_template("rap.html")
+
+
+@app.route("/dance", methods=["GET", "POST"])
+def dance():
+    return render_template("dance.html")
+
+
+@app.route("/other", methods=["GET", "POST"])
+def other():
+    return render_template("other.html")
 
 
 if __name__ == "__main__":
