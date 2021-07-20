@@ -106,7 +106,7 @@ def create_post():
             "song_name": request.form.get("song_name"),
             "artist_name": request.form.get("artist_name"),
             "albulm_name": request.form.get("albulm_name"),
-            "genre": request.form.get("genre"),
+            "genre_name": request.form.get("genre_name"),
             "sub_genre": request.form.get("sub_genre"),
             "post_description": request.form.get("post_description"),
             "post_date": request.form.get("post_date"),
@@ -114,7 +114,7 @@ def create_post():
         }
         mongo.db.posts.insert_one(post)
         flash("Post Successfully Created")
-        return redirect(url_for("base.html"))
+        return redirect(url_for("base"))
 
     genres = list(mongo.db.genre.find().sort("genre_name", 1))
     return render_template("create_post.html", genres=genres)
@@ -122,28 +122,32 @@ def create_post():
 
 @app.route("/rock", methods=["GET", "POST"])
 def rock():
-    posts = list(mongo.db.posts.find())
+    posts = list(mongo.db.posts.find({"genre_name": "Rock"}).sort("id", 1))
     return render_template("rock.html", posts=posts)
 
 
 @app.route("/pop", methods=["GET", "POST"])
 def pop():
-    return render_template("pop.html")
+    posts = list(mongo.db.posts.find({"genre_name": "Pop"}).sort("id", 1))
+    return render_template("pop.html", posts=posts)
 
 
 @app.route("/rap", methods=["GET", "POST"])
 def rap():
-    return render_template("rap.html")
+    posts = list(mongo.db.posts.find({"genre_name": "Rap"}).sort("id", 1))
+    return render_template("rap.html", posts=posts)
 
 
 @app.route("/dance", methods=["GET", "POST"])
 def dance():
-    return render_template("dance.html")
+    posts = list(mongo.db.posts.find({"genre_name": "Dance"}).sort("id", 1))
+    return render_template("dance.html", posts=posts)
 
 
 @app.route("/other", methods=["GET", "POST"])
 def other():
-    return render_template("other.html")
+    posts = list(mongo.db.posts.find({"genre_name": "Other"}).sort("id", 1))
+    return render_template("other.html", posts=posts)
 
 
 if __name__ == "__main__":
