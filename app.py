@@ -35,8 +35,8 @@ def register():
             return redirect(url_for("register"))
 
         register = {
-            "first name": request.form.get("firstname").lower(),
-            "last name": request.form.get("lastname").lower(),
+            "firstname": request.form.get("firstname").lower(),
+            "lastname": request.form.get("lastname").lower(),
             "username": request.form.get("username").lower(),
             "password": generate_password_hash(request.form.get("password"))
         }
@@ -60,11 +60,11 @@ def login():
             # ENSURED HASH PASSWORD MATCHES USER INPUT
             if check_password_hash(
                     existing_user["password"], request.form.get("password")):
-                        session["user"] = request.form.get("username").lower()
-                        flash("Welcome, {}".format(
-                            request.form.get("username")))
-                        return redirect(url_for(
-                            "profile", username=session["user"]))
+                session["user"] = request.form.get("username").lower()
+                flash("Welcome, {}".format(
+                    request.form.get("username")))
+                return redirect(url_for(
+                    "profile", username=session["user"]))
             else:
                 # INVALID PASSWORD
                 flash("Incorrect Username and/or Password")
@@ -85,7 +85,9 @@ def profile():
         {"username": session["user"]})["firstname"].capitalize()
 
     if session["user"]:
-        return render_template("profile.html", username=username)
+        posts = list(mongo.db.posts.find
+                     ({"created_by": session["user"]}).sort("id", 1))
+        return render_template("profile.html", username=username, posts=posts)
 
     return redirect(url_for("login"))
 
@@ -148,6 +150,39 @@ def dance():
 def other():
     posts = list(mongo.db.posts.find({"genre_name": "Other"}).sort("id", 1))
     return render_template("other.html", posts=posts)
+
+
+@app.route("/edit/<post_id>", methods=["GET", "POST"])
+def edit(post_id):
+    if request.method == "POST":
+        submit = {
+            "song_name": request.form.get("song_name"),
+            "artist_name": request.form.get("artist_name"),
+            "albulm_name": request.form.get("albulm_name"),
+            "genre_name": request.form.get("genre_name"),
+            "sub_genre": request.form.get("sub_genre"),
+            "post_description": request.form.get("post_description"),
+            "post_date": request.form.get("post_date"),
+            "created_by": session["user"]
+        }
+        mongo.db.posts.update({"_id": ObjectId(post_id)}, submit)
+        flash("Post Has Been Updated")
+
+    post = mongo.db.posts.find_one({"_id": ObjectId(post_id,)})
+    genres = mongo.db.genre.find().sort("genre_name", 1)
+    return render_template("edit.html", post=post, genres=genres)
+
+
+@app.route("/delete_post/<post_id>")
+def delete_post(post_id):
+    mongo.db.posts.remove({"_id": ObjectId(post_id,)})
+    flash("Post Successfully Removed")
+    return redirect(url_for("profile"))
+
+
+@app.errorhandler(404)
+def page_not_found(e):
+    return render_template("404.html"), 404
 
 
 if __name__ == "__main__":

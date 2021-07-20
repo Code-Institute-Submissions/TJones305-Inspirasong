@@ -23,7 +23,8 @@
                 <a href="{{ url_for('base') }}" class="brand-logo">Inspirasong</a>
                 <a href="#" data-target="mobile-demo" class="sidenav-trigger right"><i class="fas fa-bars"></i></a>
                 <ul id="nav-mobile" class="right hide-on-med-and-down sidenav-trigger purple lighten-2">
-                    {% if session.user %}
+                    {% if session.user %}                    
+                    <li><a href="{{ url_for('base') }}">Home</a></li>
                     <li><a href="{{ url_for('profile') }}">Profile</a></li>
                     <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
@@ -36,18 +37,20 @@
             </div>
         </nav>
 
-            <ul id="mobile-demo" class="sidenav purple">
+            <ul id="mobile-demo" class="sidenav purple purple-text text-lighten-5">
                 <div class="hero col s12 m6">
                     <img src="static/css/images/background-notes.jpg" alt="Musical notes on wall">
                 </div>
                 <li><h4 href="{{ url_for('base') }}" class="purple lighten-2 purple-text text-lighten-5 center-align">Inspirasong</h4></li>
                 {% if session.user %}
+                    <li><a href="{{ url_for('base') }}">Home</a></li>
                     <li><a href="{{ url_for('profile') }}" class="text-lighten-5">Profile</a></li>
                     <li><a href="{{ url_for('create_post') }}">Create Post</a></li>
                     <li><a href="{{ url_for('logout') }}">Logout</a></li>
                 {% else %}
-                    <li><a href="{{ url_for('login') }}" class=" purple-text text-lighten-5">Login</a></li>
-                    <li><a href="{{ url_for('register') }}" class="purple-text text-lighten-5">Register</a></li>
+                    <li><a href="{{ url_for('base') }}">Home</a></li>
+                    <li><a href="{{ url_for('login') }}">Login</a></li>
+                    <li><a href="{{ url_for('register') }}">Register</a></li>
                 {% endif %}
             </ul>
     </header>
