@@ -11,6 +11,8 @@
         </div>
     </div>
 
+
+    <h3 class="purple-text text-darken-2">{{ username }}'s Posts</h3>
     <ul class="collapsible">
         {% for post in posts %}
         <li>
@@ -41,35 +43,6 @@
         </li>
         {% endfor %}
     </ul>
-
-    {% for post in posts %}
-      <div class="col s12 m7">
-          <h4 class="header purple darken-3 purple-text text-lighten-5 center-align">{{post.song_name }} | {{post.artist_name }}</h4>
-          <div class="card horizontal">
-              <div class="card-image purple">
-                  <img src="static/css/images/rock_image.png">
-              </div>
-              <div class="card-stacked purple lighten-4">
-                  <div class="card-content">
-                      <p>Album: {{post.albulm_name }}</p>
-                      <p>Genre: {{post.genre_name }}</p>
-                      <p>Sub Genre: {{post.sub_genre }}</p>
-                      <p>{{post.post_description}}</p>
-                      <p><em>post created: {{post.post_date }}</em></p>
-                      <p><em>by: {{ post.created_by }}</em></p>
-                  </div>
-                  <div class="card-action purple">
-                    {% if session.user|lower == post.created_by|lower %}
-                    <div class=" col s9 right-align">
-                        <a href="#" class="waves-effect waves-light btn-small red accent-4 button">Delete</a>
-                        <a href="#" class="waves-effect waves-light btn-small light-blue accent-4 button">Edit</a>
-                    </div>
-                    {% endif %}
-                  </div>
-              </div>
-          </div>
-      </div>
-      {% endfor %}
 
     <!--genre page buttons-->
         <section class="row buttons">
