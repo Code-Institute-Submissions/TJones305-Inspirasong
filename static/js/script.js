@@ -12,3 +12,8 @@
    $(document).ready(function(){
     $('.datepicker').datepicker();
   });
+
+  //Collapsible on genre posts
+   $(document).ready(function(){
+    $('.collapsible').collapsible();
+  });

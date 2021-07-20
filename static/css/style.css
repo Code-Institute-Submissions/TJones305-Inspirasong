@@ -64,6 +64,10 @@ background-clip: text;
     margin-top: 2%;
 }
 
+#genre_header{
+    font-size:35px ;
+}
+
 .rock {
     font-family: 'Metal Mania', cursive;
     font-size: 18px;
@@ -71,7 +75,7 @@ background-clip: text;
 
 #rock_header {
     font-family: 'Metal Mania', cursive;
-    font-size: 50px;
+    font-size: 60px;
 }
 
 .pop {
@@ -81,7 +85,7 @@ background-clip: text;
 
 #pop_header {
     font-family: 'Bangers', cursive;
-    font-size: 50px;
+    font-size: 60px;
 }
 
 .dance {
@@ -90,7 +94,7 @@ background-clip: text;
 
 #dance_header {
     font-family: 'Zen Dots', cursive;;
-    font-size: 50px;
+    font-size: 60px;
 }
 
 .rap {
@@ -100,7 +104,7 @@ background-clip: text;
 
 #rap_header {
     font-family: 'Staatliches', cursive;
-    font-size: 50px;
+    font-size: 60px;
 }
 
 .other {
@@ -110,5 +114,5 @@ background-clip: text;
 
 #other_header {
     font-family: 'Bebas Neue', cursive;
-    font-size: 50px;
+    font-size: 60px;
 }

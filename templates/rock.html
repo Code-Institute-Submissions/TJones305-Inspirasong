@@ -2,45 +2,34 @@
 {% block content %}
 
         <section>
-            <h1 class="purple lighten-4 title rainbow">INSPIRASONG</h1>
-            <h2 id ="rock_header" class="purple lighten-4 tag">Rock</h2>
+            <h1 id ="genre_header" class="purple lighten-4 title rainbow">INSPIRASONG</h1>
+            <h2 id ="rock_header" class="tag">Rock</h2>
         </section>  
 
         <div class="hero">
             <img src="static/css/images/rock_image.png" alt="Rock band montage">
         </div>
 
-        <section>
-        <!--flash messages-->
-        {% with messages = get_flashed_messages(category_filter=["rock"]) %}
-            {% if category|lower == 'rock'|lower %}
-                {% for messages in messages %}
-                    <div class="row flashes">
-                        <h4 class="light-purple lighten-4 center-align">{{ post }}</h4>
-                    </div>
-                {% endfor %}
-            {% endif %}
-        {% endwith %}
-        </section>
-
          <ul class="collapsible">
             {% for post in posts %}
             <li>
-                <div class="header white-text purple darken-4 text-shadow">
+                <div class="collapsible-header white-text purple darken-4 text-shadow">
                     <div class="col s3">
                         <i class="fas fa-caret-down"></i>
+                            Song: <strong>{{post.song_name }}</strong> |
+                            Artist: <strong>{{post.artist_name }}</strong> 
                         {% if session.user|lower == post.created_by|lower %}
-                            <a href="{{ url_for('delete_task', task_id=task._id) }}" class="waves-effect waves-light btn-small green accent-4">Delete</a>
-                            <a href="{{ url_for('edit_task', task_id=task._id) }}" class="waves-effect waves-light btn-small light-blue accent-4">Edit</a>
+                            <a href="#" class="waves-effect waves-light btn-small green accent-4">Delete</a>
+                            <a href="#" class="waves-effect waves-light btn-small light-blue accent-4">Edit</a>
                         {% endif %}
                     </div>
                 </div>
 
-                <div class="body">
-                    <strong>{{post.song_name }}</strong>
-                    <p>{{post.artist_name }}</p>
+                <div class="collapsible-body purple lighten-1 purple-text text-lighten-5">
+                    <strong class="col s3">{{post.song_name }}</strong>
+                    <p class="col s3">{{post.artist_name }}</p>
                     <p>{{post.albulm_name }}</p>
-                    <p>{{post.genre }}</p>
+                    <p>{{post.genre_name }}</p>
                     <p>{{post.sub_genre }}</p>                    
                     <p>{{post.post_description}}</p>
                     <p><em>{{post.post_date }}</em></p>
