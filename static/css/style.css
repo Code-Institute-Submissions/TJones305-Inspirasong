@@ -1,3 +1,4 @@
+/*--- Media Queries ---*/
 body {
     background-color: #f6c4ff;
 }
@@ -46,6 +47,8 @@ background-clip: text;
     text-align: center;
 }
 
+/*--- Base ---*/
+
 .hero img {
     height: 350px;
     width:100%;
@@ -63,6 +66,8 @@ background-clip: text;
     position: relative;
     margin-top: 2%;
 }
+
+/*--- Genre Page Styles ---*/
 
 #genre_header{
     font-size:35px ;
@@ -116,3 +121,21 @@ background-clip: text;
     font-family: 'Bebas Neue', cursive;
     font-size: 60px;
 }
+
+/*--- Toggles with media query (834px) to switch post style ---*/
+.desktop { 
+    display: block;
+}
+   
+.responsive {
+    display: none;
+}
+
+
+/*--- Media Queries ---*/
+@media screen and (max-width: 834px) {
+div.responsive { display: block}
+div.desktop { display: none }
+}
+
+
