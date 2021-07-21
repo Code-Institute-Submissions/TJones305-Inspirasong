@@ -9,13 +9,15 @@
             </h3>
         </div>
         <div class="col s10 offset-s1 purple purple-text text-lighten-5">
+            {% if not image%}
             <img class="col s4 " src="static/css/images/default_image.jpg" alt=" {{ username }}'s profile picture" />
+            {% else %}
+            <img class="col s4 " src="{{ image }}" alt=" {{ username }}'s profile picture" />
+            {% endif }
             <h3 class="col s5 offset-s1">Username: {{ username }}</h3>
         </div>
     </div>
-</div>
-            
-        
+</div>    
             <h3 class="purple-text text-darken-2">{{ firstname }}'s Posts</h3>
             <ul class="collapsible">
                 {% for post in posts %}
@@ -25,7 +27,7 @@
                     <i class="fas fa-caret-down"></i>
                     Song: <strong>{{post.song_name }}</strong> |
                     Artist: <strong>{{post.artist_name }}</strong>
-                    {% if session.user|lower == post.created_by|lower %}
+                    {% if session.user|lower == post.created_by or "adminuser"|lower %}
                     <div class=" col s9 right-align">
                         <a href="{{ url_for('delete_post', post_id=post._id) }}"
                             class="waves-effect waves-light btn-small red accent-4 button">Delete</a>
@@ -33,7 +35,7 @@
                             class="waves-effect waves-light btn-small light-blue accent-4 button">Edit</a>
                     </div>
                     {% endif %}
-                </div>
+                </div>                    
             </div>
 
             <div class="collapsible-body purple lighten-1 purple-text text-lighten-5">

@@ -32,7 +32,7 @@ def register():
             {"username": request.form.get("username").lower()})
 
         if existing_user:
-            flash("Username already exists")
+            flash("Username already exists please choose another")
             return redirect(url_for("register"))
 
         register = {
@@ -82,13 +82,27 @@ def login():
 @app.route("/profile", methods=["GET", "POST"])
 def profile():
     # GET THE SESSION USER'S USERNAME FROM DB
-    username = mongo.db.users.find_one(
-        {"username": session["user"]})["firstname"].capitalize()
+    user = mongo.db.users.find_one({"username": session["user"]})
+    print(user)
+    username = user["username"]
+    firstname = user["firstname"].capitalize()
+    lastname = user["lastname"].capitalize()
+    image = user["image"]
 
-    if session["user"]:
+    if session["user"] == "adminuser":
+        posts = list(mongo.db.posts.find
+                     ().sort("id", 1))
+        return render_template(
+            "profile.html", username=username, posts=posts, image=image,
+            firstname=firstname, lastname=lastname)
+
+    elif session["user"]:
         posts = list(mongo.db.posts.find
                      ({"created_by": session["user"]}).sort("id", 1))
-        return render_template("profile.html", username=username, posts=posts)
+
+        return render_template(
+            "profile.html", username=username, posts=posts, image=image,
+            firstname=firstname, lastname=lastname)
 
     return redirect(url_for("login"))
 
@@ -176,8 +190,25 @@ def edit(post_id):
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
+    if request.method == "POST":
+        delete = {
+            "song_name": request.form.get("song_name"),
+            "artist_name": request.form.get("artist_name"),
+            "albulm_name": request.form.get("albulm_name"),
+            "genre_name": request.form.get("genre_name"),
+            "sub_genre": request.form.get("sub_genre"),
+            "post_description": request.form.get("post_description"),
+            "post_date": request.form.get("post_date"),
+            "created_by": session["user"]
+        }
+        post = mongo.db.posts.find_one({"_id": ObjectId(post_id,)})
+        genres = mongo.db.genre.find().sort("genre_name", 1)
+    return render_template("confirm.html", post=post, genres=genres)
+
+
+@app.route("/confirm/<post_id>")
+def confirm(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id,)})
-    flash("Post Successfully Removed")
     return redirect(url_for("profile"))
 
 
