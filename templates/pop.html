@@ -18,6 +18,7 @@
         <div class="card horizontal">
             <div class="card-image purple">
                 <img src="static/css/images/pop_image.jpg" alt="Man listening to pop music">
+            </div>
             <div class="card-stacked purple lighten-4">
                 <div class="card-content">
                     <p class="purple lighten-3">Album: {{post.albulm_name }}</p>
@@ -28,7 +29,7 @@
                     <p class="purple lighten-3"><em>by: {{ post.created_by }}</em></p>
                 </div>
                 <div class="card-action purple">
-                    {% if session.user|lower == post.created_by|lower %}
+                    {% if session.user|lower == post.created_by|lower or session.user|lower == "adminuser"|lower %}
                     <div class=" col s9 right-align">
                         <a href="{{ url_for('delete_post', post_id=posts._id) }}"
                             class="waves-effect waves-light btn-small red accent-4 button">Delete</a>
@@ -62,7 +63,7 @@
                     <p class="purple lighten-3">{{post.post_description}}</p>
                     <p><em>post created: {{post.post_date }}</em></p>
                     <p><em>by: {{ post.created_by }}</em></p>
-                    {% if session.user|lower == post.created_by|lower %}
+                    {% if session.user|lower == post.created_by|lower or session.user|lower == "adminuser"|lower %}
                     <a href="{{ url_for('edit', post_id=posts._id) }}"
                         class="waves-effect waves-light btn-small light-blue accent-4 button right-align">Edit</a>
                     <a href="{{ url_for('delete_post', post_id=posts._id) }}"
