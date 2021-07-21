@@ -1,88 +1,99 @@
 {% extends "base.html" %}
 {% block content %}
 
-    <h3 class="purple-text text-darken-4 center-align">Edit Post</h3>
+<h3 class="purple-text text-darken-4 center-align">Edit Post</h3>
 
-    <div class="row card-panel grey lighten-4">
-        <form class="col s12" method="POST" action="{{ url_for('edit', post_id=post._id) }}">
-            <!-- Genre -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa fa-folder-open prefix purple-text text-darken-4"></i>
-                    <select id="genre_name" name="genre_name" class="validate" required>
-                        <option value="" disabled>Choose Genre</option>
-                        {% for genre in genres %}
-                            {% if genre.genre_name == post.genre_name %}
-                                <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
-                            {% else %} 
-                                <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
-                            {% endif %}
-                        {% endfor %}
-                    </select>
-                    <label for="genre_name">Genre</label>
-                </div>
+<div class="row card-panel grey lighten-4">
+    <form class="col s12" method="POST" action="{{ url_for('edit', post_id=post._id) }}">
+        <!-- Genre -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa fa-folder-open prefix purple-text text-darken-4"></i>
+                <select id="genre_name" name="genre_name" class="validate" required>
+                    <option value="" disabled>Choose Genre</option>
+                    {% for genre in genres %}
+                    {% if genre.genre_name == post.genre_name %}
+                    <option value="{{ genre.genre_name }}" selected>{{ genre.genre_name }}</option>
+                    {% else %}
+                    <option value="{{ genre.genre_name }}">{{ genre.genre_name }}</option>
+                    {% endif %}
+                    {% endfor %}
+                </select>
+                <label for="genre_name">Genre</label>
             </div>
-            <!-- Sub Genre -->
-            <div class="row">
-                <div class="input-field">  
-                    <i class="fa fa-cog prefix purple-text text-darken-4"></i>
-                    <input id="sub_genre" name="sub_genre" minlength="5" maxlength="50"
-                         type="text" class="validate" required>
-                    <label for="sub_genre">Sub Genre (e.g. rock could be metal, indie, alternative)</label>
-                </div>
+        </div>
+        <!-- Sub Genre -->
+        <div class="row">
+            <div class="input-field">
+                <i class="fa fa-cog prefix purple-text text-darken-4"></i>
+                <input id="sub_genre" name="sub_genre" minlength="5" maxlength="50" type="text"
+                    value="{{ post.sub_genre }}" class="validate" required>
+                <label for="sub_genre">Sub Genre (e.g. rock could be metal, indie, alternative)</label>
             </div>
-            <!-- Song Name -->
-            <div class="row">
-                <div class="input-field">  
-                    <i class="fa fa-music prefix purple-text text-darken-4"></i>
-                    <input id="song_name" name="song_name" minlength="5" maxlength="50"
-                         type="text" class="validate" required>
-                    <label for="song_name">Song Name</label>
-                </div>
+        </div>
+        <!-- Song Name -->
+        <div class="row">
+            <div class="input-field">
+                <i class="fa fa-music prefix purple-text text-darken-4"></i>
+                <input id="song_name" name="song_name" minlength="5" maxlength="50" type="text"
+                    value="{{ post.song_name }}" class="validate" required>
+                <label for="song_name">Song Name</label>
             </div>
-            <!-- Artist Name -->
-            <div class="row">
-                <div class="input-field">  
-                    <i class="fa fa-user prefix purple-text text-darken-4"></i>
-                    <input id="artist_name" name="artist_name" minlength="5" maxlength="50"
-                         type="text" class="validate" required>
-                    <label for="artist_name">Artist Name</label>
-                </div>
+        </div>
+        <!-- Artist Name -->
+        <div class="row">
+            <div class="input-field">
+                <i class="fa fa-user prefix purple-text text-darken-4"></i>
+                <input id="artist_name" name="artist_name" minlength="5" maxlength="50" type="text"
+                    value="{{ post.artist_name }}" class="validate" required>
+                <label for="artist_name">Artist Name</label>
             </div>
-            <!-- Albulm Name -->
-            <div class="row">
-                <div class="input-field">  
-                    <i class="fa fa-pencil-alt prefix purple-text text-darken-4"></i>
-                    <input id="albulm_name" name="albulm_name" minlength="1" maxlength="50"
-                         type="text" class="validate" required>
-                    <label for="albulm_name">Album Name</label>
-                </div>
+        </div>
+        <!-- Albulm Name -->
+        <div class="row">
+            <div class="input-field">
+                <i class="fa fa-pencil-alt prefix purple-text text-darken-4"></i>
+                <input id="albulm_name" name="albulm_name" minlength="1" maxlength="50" type="text"
+                    value="{{ post.albulm_name }}" class="validate" required>
+                <label for="albulm_name">Album Name</label>
             </div>
-            <!-- Task Description -->
-            <div class="row">
-                <div class="input-field col s12">
-                    <i class="fa fa-align-left prefix purple-text text-darken-4"></i>
-                    <textarea id="post_description" name="post_description" minlength="5" maxlength="300" class="materialize-textarea validate" required></textarea>
-                    <label for="post_description">Why does it inspire you?</label>
-                </div>
+        </div>
+        <!-- Task Description -->
+        <div class="row">
+            <div class="input-field col s12">
+                <i class="fa fa-align-left prefix purple-text text-darken-4"></i>
+                <textarea id="post_description" name="post_description" minlength="5" maxlength="300"
+                    class="materialize-textarea validate" required>
+                        {{- post.post_description }}
+                    </textarea>
+                <label for="post_description">Why does it inspire you?</label>
             </div>
-            <!-- Post Creation Date -->
-             <div class="row">
-                <div class="input-field">  
-                    <i class="fa fa-calendar-alt prefix purple-text text-darken-4"></i>
-                    <input id="post_date" name="post_date" type="text" class="datepicker validate" required>
-                    <label for="post_date">Date Created (select today's date)</label>
-                </div>
+        </div>
+        <!-- Post Creation Date -->
+        <div class="row">
+            <div class="input-field">
+                <i class="fa fa-calendar-alt prefix purple-text text-darken-4"></i>
+                <input id="post_date" name="post_date" type="text" value="{{ post.post_date }}"
+                    class="datepicker validate" required>
+                <label for="post_date">Date Created (select today's date)</label>
             </div>
-            <!-- Submit Button -->
-            <div class="row">
-                <div class="col s12 center-align">
-                    <button type="submit" class="btn-large waves-effect purple darken-1 text-shadow">
-                        Update Post <i class="fas fa-plus-square right"></i>
-                    </button>
-                </div>
+        </div>
+        <!-- Submit Button -->
+        <div class="row">
+            <div class="col s12 center-align">
+                <button type="submit" class="btn-large waves-effect purple darken-1 text-shadow">
+                    Update Post <i class="fas fa-edit"></i>
+                </button>
+
+                <a href="{{ url_for('profile') }}" class="btn-large green text-shadow">Return to Profile <i
+                        class="fas fa-user"></i></a>
+                <a href="{{ url_for('base') }}" class="btn-large blue text-shadow">Return to Home <i
+                        class="fas fa-home"></i></a>
+                <a href="{{ url_for('profile') }}" class="btn-large red text-shadow">Cancel <i
+                        class="fas fa-times-circle"></i></a>
             </div>
-        </form>
-    </div>
+        </div>
+    </form>
+</div>
 
 {% endblock %}
