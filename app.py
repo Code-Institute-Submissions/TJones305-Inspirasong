@@ -4,6 +4,7 @@ from flask import (
 from flask_pymongo import PyMongo
 from bson.objectid import ObjectId
 from werkzeug.security import generate_password_hash, check_password_hash
+from werkzeug.exceptions import HTTPException
 if os.path.exists("env.py"):
     import env
 
@@ -183,6 +184,26 @@ def delete_post(post_id):
 @app.errorhandler(404)
 def page_not_found(e):
     return render_template("404.html"), 404
+
+
+@app.errorhandler(403)
+def forbidden_page(e):
+    return render_template("403.html"), 403
+
+
+@app.errorhandler(410)
+def page_not_exsist(e):
+    return render_template("410.html"), 410
+
+
+@app.errorhandler(Exception)
+def handle_exception(e):
+    # pass through HTTP errors
+    if isinstance(e, HTTPException):
+        return e
+
+    # now you're handling non-HTTP exceptions only
+    return render_template("500.html", e=e), 500
 
 
 if __name__ == "__main__":
