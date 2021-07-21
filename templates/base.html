@@ -68,6 +68,7 @@
         </div>
 
         <!--genre page buttons-->
+        <div class="desktop">
         <section class="row buttons">
             <div class="genre">
                 <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-1 rock" 
@@ -90,6 +91,32 @@
                     href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
             </div>
         </section>
+        </div>
+
+        <div class="responsive">
+        <section class="row buttons">
+            <div class="genre">
+                <a class="col s4 offset-s4 waves-effect waves-light btn-large purple lighten-1 rock" 
+                    href="{{ url_for('rock') }}">Rock <i class="fas fa-skull"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col s4 offset-s4 waves-effect waves-light btn-large purple lighten-1 pop" 
+                    href="{{ url_for('pop') }}">Pop <i class="fas fa-star"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col s4 offset-s4 waves-effect waves-light btn-large purple lighten-1 rap" 
+                    href="{{ url_for('rap') }}">Rap <i class="fas fa-fist-raised"></i></a>
+            </div>
+            <div class="genre">
+                <a class="col s4 offset-s4 waves-effect waves-light btn-large purple lighten-1 dance" 
+                    href="{{ url_for('dance') }}">Dance <i class="fas fa-compact-disc"></i></a>
+            </div>
+            <div class="genre ">
+                <a class="col s4 offset-s4 waves-effect waves-light btn-large purple lighten-1 other" 
+                    href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
+            </div>
+        </section>
+        </div>
 
     {% endblock %}
     </main>

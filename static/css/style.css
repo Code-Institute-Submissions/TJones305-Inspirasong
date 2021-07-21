@@ -133,7 +133,27 @@ background-clip: text;
 
 
 /*--- Media Queries ---*/
+
+
 @media screen and (max-width: 834px) {
+h1 {
+    font-size: 45px;
+}
+
+.genre{
+    display: block;
+    margin: 5px 0px;
+}
+
+.row .col{
+    margin: 2px 3px;
+}
+
+h4{
+    font-size: 29.5px;
+}
+
+/*--- Toggles switch to different post style ---*/
 div.responsive { display: block}
 div.desktop { display: none }
 }
