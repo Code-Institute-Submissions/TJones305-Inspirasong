@@ -29,7 +29,7 @@
                 <!--Username-->
                 <div class="row">
                     <div class="input-field col s6">
-                        <i class="fas fa-user-plus prefix purple-text lighten-1"></i>
+                        <i class="fas fa-user-secret prefix purple-text lighten-1"></i>
                         <input id="username" name="username" type="text" minlength="5"
                              maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                         <label for="username">Username</label>
@@ -42,6 +42,14 @@
                         <input id="password" name="password" type="password" minlength="5" 
                             maxlength="15" pattern="^[a-zA-Z0-9]{5,15}$" class="validate" required>
                         <label for="password">Create Password</label>
+                    </div>
+                </div>
+                <!--Profile Image-->
+                <div class="row">
+                    <div class="input-field col s12">
+                        <i class="fas fa-image prefix purple-text lighten-1"></i>
+                        <input id="image" name="image" type="text" minlength="5" pattern="^[a-zA-Z0-9]{5,15}$" class="validate">
+                        <label for="image">Profile Image (copy and paste image URL)</label>
                     </div>
                 </div>
                 <!--Register Button-->
