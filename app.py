@@ -210,16 +210,16 @@ def page_not_exsist(e):
     return render_template("410.html"), 410
 
 
-#   @app.errorhandler(Exception)
-#   def handle_exception(e):
+@app.errorhandler(Exception)
+def handle_exception(e):
     # pass through HTTP errors
-    #   if isinstance(e, HTTPException):
-    #   return e
-    # now you're handling non-HTTP exceptions only
-    #   return render_template("500.html", e=e), 500
+    if isinstance(e, HTTPException):
+        return e
+    # non-HTTP exceptions only
+    return render_template("500.html", e=e), 500
 
 
 if __name__ == "__main__":
     app.run(host=os.environ.get("IP"),
             port=int(os.environ.get("PORT")),
-            debug=True)
+            debug=False)
