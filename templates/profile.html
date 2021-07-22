@@ -9,70 +9,129 @@
             </h3>
         </div>
         <div class="col s10 offset-s1 purple purple-text text-lighten-5">
-            {% if not image%}
-            <img class="col s4 " src="static/css/images/default_image.jpg" alt=" {{ username }}'s profile picture" />
+            {% if not image %}
+            <img class="col s4" src="static/css/images/default_image.jpg" alt=" {{ username }}'s profile picture" />
             {% else %}
-            <img class="col s4 " src="{{ image }}" alt=" {{ username }}'s profile picture" />
-            {% endif }
+            <img class="col s4" src="{{ image }}" alt=" {{ username }}'s profile picture" />
+            {% endif %}
             <h3 class="col s5 offset-s1">Username: {{ username }}</h3>
         </div>
     </div>
-</div>    
-            <h3 class="purple-text text-darken-2">{{ firstname }}'s Posts</h3>
-            <ul class="collapsible">
-                {% for post in posts %}
-        <li>
-            <div class="collapsible-header white-text purple darken-4 text-shadow col s12">
-                <div class="col s3">
-                    <i class="fas fa-caret-down"></i>
-                    Song: <strong>{{post.song_name }}</strong> |
-                    Artist: <strong>{{post.artist_name }}</strong>
-                    {% if session.user|lower == post.created_by or "adminuser"|lower %}
-                    <div class=" col s9 right-align">
-                        <a href="{{ url_for('delete_post', post_id=post._id) }}"
-                            class="waves-effect waves-light btn-small red accent-4 button">Delete</a>
-                        <a href="{{ url_for('edit', post_id=post._id) }}"
-                            class="waves-effect waves-light btn-small light-blue accent-4 button">Edit</a>
+</div>
+<h3 class="purple-text text-darken-2">{{ firstname }}'s Posts</h3>
+<ul class="collapsible">
+    {% for post in posts %}
+    <li>
+        <div class="collapsible-header white-text purple darken-4 text-shadow col s12">
+            <div class="col s3">
+                <i class="fas fa-caret-down"></i>
+                <p>Song: <strong>{{post.song_name }}</strong> |
+                    Artist: <strong>{{post.artist_name }}</strong></p>
+                {% if session.user|lower == post.created_by or "adminuser"|lower %}
+                <div class=" col s9 left-align">
+                    <!-- Modal Trigger -->
+                    <a class="waves-effect waves-light btn-small red accent-4 button modal-trigger"
+                        href="#delete-{{post._id}}">Delete</a>
+                    <!-- Modal Structure -->
+                    <div id="delete-{{post._id}}" class="modal">
+                        <div class="modal-content purple purple-text text-lighten-5 center-align">
+                            <h4>Delete Post?</h4>
+                            <p>Are you sure you want to delete? If you click 'yes' this action cannot be undone.
+                                Clicking 'no' will return you to your profile page</p>
+                        </div>
+                        <div class="modal-footer purple lighten-4">
+                            <a href="{{ url_for('delete_post', post_id=post._id) }}"
+                                class="waves-effect waves-light btn green accent-4 button center-align">Yes</a>
+                            <a href="{{ url_for('profile') }}"
+                                class="waves-effect waves-light btn red accent-4 button center-align">No</a>
+                        </div>
                     </div>
-                    {% endif %}
-                </div>                    
+                    <a href="{{ url_for('edit', post_id=post._id) }}"
+                        class="waves-effect waves-light btn-small light-blue accent-4 button">Edit</a>
+                </div>
+                {% endif %}
             </div>
+        </div>
 
-            <div class="collapsible-body purple lighten-1 purple-text text-lighten-5">
-                <strong class="col s3">{{post.song_name }}</strong>
-                <p class="col s3">{{post.artist_name }}</p>
-                <p>{{post.albulm_name }}</p>
-                <p>{{post.genre_name }}</p>
-                <p>{{post.sub_genre }}</p>
-                <p>{{post.post_description}}</p>
-                <p><em>{{post.post_date }}</em></p>
-                <p><em>by: {{ post.created_by }}</em></p>
-            </div>
-        </li>
-        {% endfor %}
-        </ul>
+        <div class="collapsible-body purple lighten-4 purple-text">
+            <p><strong class="col s3">{{post.song_name }}</strong></p>
+            <p class="col s3">{{post.artist_name }}</p>
+            <p>{{post.albulm_name }}</p>
+            <p>{{post.genre_name }}</p>
+            <p>{{post.sub_genre }}</p>
+            <p>{{post.post_description}}</p>
+            <p><em>{{post.post_date }}</em></p>
+            <p><em>by: {{ post.created_by }}</em></p>
+        </div>
+    </li>
+    {% endfor %}
+</ul>
 
-        <!--genre page buttons-->
-        <section class="row buttons">
-            <div class="genre">
-                <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-1 rock"
-                    href="{{ url_for('rock') }}">Rock <i class="fas fa-skull"></i></a>
-            </div>
-            <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1 pop"
-                    href="{{ url_for('pop') }}">Pop <i class="fas fa-star"></i></a>
-            </div>
-            <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1 rap"
-                    href="{{ url_for('rap') }}">Rap <i class="fas fa-fist-raised"></i></a>
-            </div>
-            <div class="genre">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1 dance"
-                    href="{{ url_for('dance') }}">Dance <i class="fas fa-compact-disc"></i></a>
-            </div>
-            <div class="genre ">
-                <a class="col m2 waves-effect waves-light btn-large purple lighten-1 other"
-                    href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
-            </div>
-        </section>
-        {% endblock %}
+<!--genre page buttons-->
+<div class="desktop">
+    <section class="row buttons">
+        <div class="genre">
+            <a class="col m2 offset-m1 waves-effect waves-light btn-large purple lighten-1 rock"
+                href="{{ url_for('rock') }}">Rock <i class="fas fa-skull"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col m2 waves-effect waves-light btn-large purple lighten-1 pop" href="{{ url_for('pop') }}">Pop <i
+                    class="fas fa-star"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col m2 waves-effect waves-light btn-large purple lighten-1 rap" href="{{ url_for('rap') }}">Rap <i
+                    class="fas fa-fist-raised"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col m2 waves-effect waves-light btn-large purple lighten-1 dance"
+                href="{{ url_for('dance') }}">Dance <i class="fas fa-compact-disc"></i></a>
+        </div>
+        <div class="genre ">
+            <a class="col m2 waves-effect waves-light btn-large purple lighten-1 other"
+                href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
+        </div>
+    </section>
+</div>
+
+<div class="responsive">
+    <section class="row buttons">
+        <div class="genre">
+            <a class="col s6 offset-s3 waves-effect waves-light btn-large purple lighten-1 rock"
+                href="{{ url_for('rock') }}">Rock <i class="fas fa-skull"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col s6 offset-s3 waves-effect waves-light btn-large purple lighten-1 pop"
+                href="{{ url_for('pop') }}">Pop <i class="fas fa-star"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col s6 offset-s3 waves-effect waves-light btn-large purple lighten-1 rap"
+                href="{{ url_for('rap') }}">Rap <i class="fas fa-fist-raised"></i></a>
+        </div>
+        <div class="genre">
+            <a class="col s6 offset-s3 waves-effect waves-light btn-large purple lighten-1 dance"
+                href="{{ url_for('dance') }}">Dance <i class="fas fa-compact-disc"></i></a>
+        </div>
+        <div class="genre ">
+            <a class="col s6 offset-s3 waves-effect waves-light btn-large purple lighten-1 other"
+                href="{{ url_for('other') }}">Other <i class="fas fa-globe-europe"></i></a>
+        </div>
+    </section>
+</div>
+{% endblock %}
+
+<!-- Modal Trigger -->
+<a class="waves-effect waves-light btn-small red accent-4 button modal-trigger" href="#delete">Delete</a>
+
+<!-- Modal Structure -->
+<div id="delete" class="modal">
+    <div class="modal-content">
+        <h4>Delete Post?</h4>
+        <p>Are you sure you want to delete? If you click 'yes' this action cannot be undone. Clicking
+            no will return you to your profile page</p>
+    </div>
+    <div class="modal-footer">
+        <a href="{{ url_for('delete_post', post_id=post._id) }}"
+            class="waves-effect waves-light btn-small green accent-4 button">Yes</a>
+        <a href="{{ url_for('profile') }}" class="waves-effect waves-light btn-small red accent-4 button">No</a>
+    </div>
+</div>

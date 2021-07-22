@@ -190,25 +190,8 @@ def edit(post_id):
 
 @app.route("/delete_post/<post_id>")
 def delete_post(post_id):
-    if request.method == "POST":
-        delete = {
-            "song_name": request.form.get("song_name"),
-            "artist_name": request.form.get("artist_name"),
-            "albulm_name": request.form.get("albulm_name"),
-            "genre_name": request.form.get("genre_name"),
-            "sub_genre": request.form.get("sub_genre"),
-            "post_description": request.form.get("post_description"),
-            "post_date": request.form.get("post_date"),
-            "created_by": session["user"]
-        }
-        post = mongo.db.posts.find_one({"_id": ObjectId(post_id,)})
-        genres = mongo.db.genre.find().sort("genre_name", 1)
-    return render_template("confirm.html", post=post, genres=genres)
-
-
-@app.route("/confirm/<post_id>")
-def confirm(post_id):
     mongo.db.posts.remove({"_id": ObjectId(post_id,)})
+    flash("Post has been Removed")
     return redirect(url_for("profile"))
 
 
@@ -227,14 +210,13 @@ def page_not_exsist(e):
     return render_template("410.html"), 410
 
 
-@app.errorhandler(Exception)
-def handle_exception(e):
+#   @app.errorhandler(Exception)
+#   def handle_exception(e):
     # pass through HTTP errors
-    if isinstance(e, HTTPException):
-        return e
-
+    #   if isinstance(e, HTTPException):
+    #   return e
     # now you're handling non-HTTP exceptions only
-    return render_template("500.html", e=e), 500
+    #   return render_template("500.html", e=e), 500
 
 
 if __name__ == "__main__":

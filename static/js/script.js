@@ -17,3 +17,8 @@
    $(document).ready(function(){
     $('.collapsible').collapsible();
   });
+
+  //Modal for delete
+   $(document).ready(function(){
+    $('.modal').modal();
+  });
