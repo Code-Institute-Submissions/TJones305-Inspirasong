@@ -158,4 +158,71 @@ div.responsive { display: block}
 div.desktop { display: none }
 }
 
+@media screen and (max-width: 414px){
+h1 {
+    font-size: 30px;
+}
 
+h2 {
+    font-size: 18px;
+}
+
+h3 {
+    font-size: 18px;
+}
+
+nav .brand-logo {
+    font-size: 18px;
+}
+
+.hero img {
+    height: 175px;
+    width:100%;
+}
+
+.genre{
+    display: block;
+    margin: 5px 0px;
+}
+
+.row .col{
+    margin: 2px 3px;
+}
+
+h4{
+    font-size: 15px;
+}
+
+.sidenav {
+    width:200px;
+}
+
+#genre_header{
+    font-size: 30px;
+}
+
+.btn-large{
+font-size: 10px;
+}
+
+.rock {
+    font-size: 15px;
+}
+
+.pop {
+    font-size: 15px;
+}
+
+.dance {
+     font-size: 10px;
+}
+
+.rap {
+    font-size: 15px;
+}
+
+.other {
+    font-size: 15px;
+}
+
+}
