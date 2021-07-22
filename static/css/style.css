@@ -25,6 +25,11 @@ p {
     font-family: 'Play', sans-serif;
 }
 
+li {
+    font-family: 'Play', sans-serif;
+    margin: 2px 2px;
+}
+
 .title{
     text-align: center;
     font-family: 'Zen Tokyo Zoo', cursive;
