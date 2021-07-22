@@ -43,12 +43,10 @@
         </nav>
 
         <!-- mobile navbar-->
+        <div>
         <ul id="mobile-demo" class="sidenav purple purple-text text-lighten-5">
-            <div class="hero col s2 m6">
-                <img src="static/css/images/background_notes.jpg" alt="Musical notes on wall">
-            </div>
             <li class="centre-align">
-                <h4 href="{{ url_for('base') }}" class="purple lighten-2 purple-text text-lighten-5">Inspirasong</h4>
+                <h4 class="purple lighten-2 purple-text text-lighten-5">Inspirasong</h4>
             </li>
             {% if session.user %}
             <li><a href="{{ url_for('base') }}" class="purple purple-text text-lighten-5">Home</a></li>
@@ -61,6 +59,7 @@
             <li><a href="{{ url_for('register') }}" class="purple purple-text text-lighten-5">Register</a></li>
             {% endif %}
         </ul>
+        </div>
     </header>
 
     <main class="container">
