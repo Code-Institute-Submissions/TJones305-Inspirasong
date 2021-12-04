@@ -181,7 +181,7 @@ By forking the GitHub Repository we make a copy of the original repository on ou
 
 > ### *Credits*  
 
-- Materialize: Bootstrap Library used throughout the project to make site responsive using the Bootstrap Grid System. Also for the navbar and accordion base code.
+- Materialize: Materialize Library used throughout the project to make site responsive using the Materialize Grid System. Also for the navbar and accordion base code.
 
 - MDN Web Docs: For Pattern Validation code. Code was modified to better fit my needs.
 
